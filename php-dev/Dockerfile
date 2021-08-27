@@ -1,5 +1,6 @@
 FROM dockerwest/php-laravel:7.4
 COPY prepare-command.sh /prepare-command.sh
+COPY sources.list /etc/apt/sources.list
 RUN apt-get update > /dev/null && apt-get install -y rsync procps net-tools acl > /dev/null
 
 # install nodejs
@@ -15,7 +16,7 @@ RUN apt-get update > /dev/null && apt-get install -y rsync procps net-tools acl 
 ENV PHP_IDE_CONFIG "serverName=application"
 
 # Node
-RUN curl -sL https://deb.nodesource.com/setup_15.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
 
 # Remove default xdebug ini
